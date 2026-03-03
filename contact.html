@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Best Shows</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="subpage">
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="brand">Best Shows</a>
+      <ul class="nav-menu">
+        <li><a href="../index.html#reviews">Reviews</a></li>
+        <li><a href="../index.html#top">Top Picks</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Get in Touch</h1>
+      <p class="hero-subtitle">Questions, feedback, or just want to say hi?</p>
+    </div>
+  </section>
+
+  <section class="page-content">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h2>Ways to Reach Us</h2>
+          <p>We read every message. Whether you have a suggestion, a correction, or just want to debate a rating, we'd love to hear from you.</p>
+          
+          <div class="contact-methods">
+            <div class="method">
+              <h4>Email</h4>
+              <a href="mailto:feedback@bestshows.com">feedback@bestshows.com</a>
+              <p>Best for detailed feedback or longer messages.</p>
+            </div>
+            <div class="method">
+              <h4>Response Time</h4>
+              <p>We aim to reply within 48 hours. Occasionally it takes a bit longer during busy weeks, but we get there.</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" action="#" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject" required>
+              <option value="">Select a topic</option>
+              <option value="feedback">General Feedback</option>
+              <option value="correction">Correction</option>
+              <option value="suggestion">Suggestion</option>
+              <option value="press">Press / Media</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required placeholder="What would you like to say?"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Best Shows</h3>
+          <p>Candid reviews. No payola.</p>
+        </div>
+        <div class="footer-links">
+          <a href="../index.html#reviews">Reviews</a>
+          <a href="../index.html#top">Top Picks</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-copy">
+          <p>&copy; 2025 Best Shows. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
