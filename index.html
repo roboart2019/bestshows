@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Shows | Cinephile Reviews</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand">Best Shows</a>
+      <ul class="nav-menu">
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#top">Top Picks</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>We rate what you watch</h1>
+      <p class="hero-subtitle">Honest, thoughtful reviews for TV and film. No ads, no sponsorships—just real opinions.</p>
+      <a href="#reviews" class="cta-button">Start Reading</a>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll to explore</span>
+      <div class="scroll-indicator"></div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="reviews-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Recent Reviews</h2>
+        <p class="section-desc">Our latest takes on the shows and movies everyone's talking about.</p>
+      </div>
+      
+      <div class="reviews-grid">
+        <article class="review-card" data-category="tv">
+          <div class="card-header">
+            <span class="media-badge">TV</span>
+            <div class="rating rating-high">9.5</div>
+          </div>
+          <h3 class="card-title">Severance</h3>
+          <p class="card-meta">2022–Present • Apple TV+</p>
+          <p class="card-excerpt">A masterclass in atmosphere and tension. The show explores work-life balance through a terrifying premise, with production design that feels sterile and sinister in equal measure.</p>
+          <div class="card-footer">
+            <span class="tag">Thriller</span>
+            <span class="tag">Mystery</span>
+            <span class="tag">Drama</span>
+          </div>
+        </article>
+
+        <article class="review-card" data-category="tv">
+          <div class="card-header">
+            <span class="media-badge">TV</span>
+            <div class="rating rating-high">9.0</div>
+          </div>
+          <h3 class="card-title">The Leftovers</h3>
+          <p class="card-meta">2014–2017 • HBO</p>
+          <p class="card-excerpt">Three years after 2% of the world vanishes, this series asks what it means to keep living when you don't know why. Season 2 remains one of television's most profound achievements.</p>
+          <div class="card-footer">
+            <span class="tag">Drama</span>
+            <span class="tag">Mystery</span>
+            <span class="tag">Philosophical</span>
+          </div>
+        </article>
+
+        <article class="review-card" data-category="movie">
+          <div class="card-header">
+            <span class="media-badge">Film</span>
+            <div class="rating rating-high">9.2</div>
+          </div>
+          <h3 class="card-title">Dune: Part Two</h3>
+          <p class="card-meta">2024 • 166 min</p>
+          <p class="card-excerpt">Rarely does a sequel match the quality of its predecessor, let alone surpass it. Villeneuve delivers an operatic sci-fi epic with breathtaking scale and emotional weight.</p>
+          <div class="card-footer">
+            <span class="tag">Sci-Fi</span>
+            <span class="tag">Epic</span>
+            <span class="tag">2024</span>
+          </div>
+        </article>
+
+        <article class="review-card" data-category="movie">
+          <div class="card-header">
+            <span class="media-badge">Film</span>
+            <div class="rating rating-mid">8.8</div>
+          </div>
+          <h3 class="card-title">Challengers</h3>
+          <p class="card-meta">2024 • 131 min</p>
+          <p class="card-excerpt">A taut, sensual drama where tennis matches become love triangles. The editing pulses like a heartbeat, and Zendaya commands every frame she's in.</p>
+          <div class="card-footer">
+            <span class="tag">Drama</span>
+            <span class="tag">Romance</span>
+            <span class="tag">Sports</span>
+          </div>
+        </article>
+
+        <article class="review-card" data-category="tv">
+          <div class="card-header">
+            <span class="media-badge">TV</span>
+            <div class="rating rating-high">9.4</div>
+          </div>
+          <h3 class="card-title">The Bear</h3>
+          <p class="card-meta">2022–Present • FX/Hulu</p>
+          <p class="card-excerpt">High-stakes kitchen drama filmed with the intensity of a war movie. The second season transforms the show into something even richer—a portrait of community and redemption.</p>
+          <div class="card-footer">
+            <span class="tag">Drama</span>
+            <span class="tag">Comedy</span>
+            <span class="tag">Award Winner</span>
+          </div>
+        </article>
+
+        <article class="review-card" data-category="movie">
+          <div class="card-header">
+            <span class="media-badge">Film</span>
+            <div class="rating rating-high">9.1</div>
+          </div>
+          <h3 class="card-title">Parasite</h3>
+          <p class="card-meta">2019 • 132 min</p>
+          <p class="card-excerpt">Bong Joon-ho'sgenre-bending masterpiece that feels perfectly constructed from start to finish. Funny, tense, and socially sharp—it never misses.</p>
+          <div class="card-footer">
+            <span class="tag">Thriller</span>
+            <span class="tag">Dark Comedy</span>
+            <span class="tag">Oscar Winner</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Picks -->
+  <section id="top" class="top-picks">
+    <div class="container">
+      <div class="section-header light">
+        <h2>Essential Tier</h2>
+        <p class="section-desc">The shows and films we recommend to everyone. These are non-negotiable watches.</p>
+      </div>
+
+      <div class="tier-grid">
+        <div class="tier-item">
+          <span class="tier-number">1</span>
+          <div>
+            <h4>Parasite (2019)</h4>
+            <p>Perfect blend of thriller, satire, and family drama.</p>
+          </div>
+        </div>
+        <div class="tier-item">
+          <span class="tier-number">2</span>
+          <div>
+            <h4>The Wire (2002–2008)</h4>
+            <p>The greatest TV drama ever made about institutions.</p>
+          </div>
+        </div>
+        <div class="tier-item">
+          <span class="tier-number">3</span>
+          <div>
+            <h4>Mad Men (2007–2015)</h4>
+            <p>Character study as art form. Slow, deep, brilliant.</p>
+          </div>
+        </div>
+        <div class="tier-item">
+          <span class="tier-number">4</span>
+          <div>
+            <h4>Moonlight (2016)</h4>
+            <p>Poetic, intimate, and devastatingly beautiful.</p>
+          </div>
+        </div>
+        <div class="tier-item">
+          <span class="tier-number">5</span>
+          <div>
+            <h4>Everything Everywhere All at Once (2022)</h4>
+            <p>Chaotic, heartfelt, and utterly original.</p>
+          </div>
+        </div>
+        <div class="tier-item">
+          <span class="tier-number">6</span>
+          <div>
+            <h4>Succession (2018–2023)</h4>
+            <p>Shakespearean drama with billionaire swagger.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <h2>About Best Shows</h2>
+          <p>We're a small collective of critics and cinephiles who believe great storytelling deserves honest critique. No paid promotions—no studio Influence—just genuine opinions on what's worth your time.</p>
+          <p>Every review is independent. We watch everything ourselves, discuss it internally, and publish our unfiltered takes.</p>
+          <div class="contact-link">
+            <a href="mailto:feedback@bestshows.com" class="btn-primary">Get in Touch</a>
+          </div>
+        </div>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Reviews Written</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">12</span>
+            <span class="stat-label">Critics</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Passion</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Best Shows</h3>
+          <p>Candid reviews. No payola.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#reviews">Reviews</a>
+          <a href="#top">Top Picks</a>
+          <a href="#about">About</a>
+        </div>
+        <div class="footer-copy">
+          <p>&copy; 2025 Best Shows. All rights reserved.</p>
+          <p class="small">This site is built with AI assistance. Content is placeholders—customize as needed.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          navMenu.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
