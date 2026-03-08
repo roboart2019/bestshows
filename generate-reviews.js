@@ -1,0 +1,182 @@
+// Node.js script to generate all 20 review HTML pages from shows data
+const fs = require('fs');
+const path = require('path');
+
+// Load shows data
+const { shows } = require('./data/shows.js');
+
+const reviewsDir = path.join(__dirname, 'reviews');
+if (!fs.existsSync(reviewsDir)) fs.mkdirSync(reviewsDir);
+
+function ratingClass(score) {
+  return score >= 9 ? 'rating-high' : score >= 7.5 ? 'rating-mid' : 'rating-low';
+}
+
+function officialRatingKey(r) {
+  return r.replace('-', '').replace('+', '').replace('/', '').toLowerCase();
+}
+
+function buildPage(show) {
+  const advisoriesHtml = show.contentAdvisories.map(a =>
+    `<span class="advisory">${a}</span>`
+  ).join('\n              ');
+
+  const genresHtml = show.genres.map(g =>
+    `<span class="tag">${g}</span>`
+  ).join('\n              ');
+
+  const reviewParas = show.review.split('\n\n').map(p =>
+    `        <p>${p.trim()}</p>`
+  ).join('\n');
+
+  const platformInfo = show.seasons
+    ? `${show.year} &middot; ${show.platform} &middot; ${show.seasons}`
+    : `${show.year} &middot; ${show.platform}`;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${show.title} Review | Best Shows</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="subpage review-page">
+  <nav class="navbar" data-root="../">
+    <div class="nav-container">
+      <a href="../index.html" class="brand">Best Shows</a>
+      <ul class="nav-menu">
+        <li><a href="../index.html#reviews">Reviews</a></li>
+        <li><a href="../index.html#top">Top Picks</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="review-single">
+    <div class="container">
+      <div class="review-header">
+        <span class="${show.type === 'Film' ? 'media-badge film' : 'media-badge'}">${show.type}</span>
+        <span class="official-rating ${officialRatingKey(show.officialRating)}">${show.officialRating}</span>
+        <div class="rating ${ratingClass(show.criticsScore)}">${show.criticsScore}</div>
+      </div>
+
+      <h1>${show.title}</h1>
+      <p class="review-meta">${platformInfo}</p>
+
+      <div class="review-body">
+${reviewParas}
+      </div>
+
+      <div class="review-footer">
+        <div>
+          <div class="advisories-label">Content Advisories</div>
+          <div class="advisories">
+              ${advisoriesHtml}
+          </div>
+        </div>
+        <div style="margin-top:1.25rem;">
+          ${genresHtml}
+        </div>
+      </div>
+
+      <!-- Member Rating Widget -->
+      <div class="member-rating-box" id="rating-box">
+        <h4>Rate This ${show.type === 'Film' ? 'Film' : 'Show'}</h4>
+        <div id="rating-widget-content"></div>
+      </div>
+
+      <a href="../index.html#reviews" class="back-link">&larr; Back to Reviews</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Best Shows</h3>
+          <p>Candid reviews. No payola.</p>
+        </div>
+        <div class="footer-links">
+          <a href="../index.html#reviews">Reviews</a>
+          <a href="../index.html#top">Top Picks</a>
+          <a href="../about.html">About</a>
+          <a href="../contact.html">Contact</a>
+          <a href="../members.html">My Ratings</a>
+        </div>
+        <div class="footer-copy">
+          <p>&copy; 2025 Best Shows. All rights reserved.</p>
+          <p class="small"><a href="../privacy.html" style="color:inherit;">Privacy</a> &middot; <a href="../terms.html" style="color:inherit;">Terms</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../data/shows.js"></script>
+  <script src="../auth.js"></script>
+  <script src="../script.js"></script>
+  <script>
+    const SHOW_ID = '${show.id}';
+
+    function renderRatingWidget() {
+      const user = Auth.currentUser();
+      const widget = document.getElementById('rating-widget-content');
+      const communityData = Auth.getShowRatings(SHOW_ID);
+      const communityHtml = communityData.count > 0
+        ? \`<div class="community-score">
+            <span class="score-num">\${communityData.average}</span>
+            <span class="score-label">Community avg &middot; \${communityData.count} rating\${communityData.count !== 1 ? 's' : ''}</span>
+           </div>\`
+        : '<div class="community-score"><span class="score-label">No community ratings yet. Be the first!</span></div>';
+
+      if (!user) {
+        widget.innerHTML = \`
+          <p class="rating-msg" style="margin-bottom:0.75rem;">
+            <a href="../login.html" style="color:var(--accent);">Log in</a> or
+            <a href="../register.html" style="color:var(--accent);">join free</a> to rate this \${'${show.type === 'Film' ? 'film' : 'show'}'}.
+          </p>
+          \${communityHtml}
+        \`;
+        return;
+      }
+
+      const userScore = Auth.getUserRating(SHOW_ID);
+      const buttons = Array.from({length:10}, (_, i) => i+1).map(n =>
+        \`<button class="\${userScore === n ? 'selected' : ''}" data-score="\${n}" onclick="submitRating(\${n})">\${n}</button>\`
+      ).join('');
+
+      widget.innerHTML = \`
+        <p class="rating-msg" style="margin-bottom:0.5rem;">\${userScore ? \`Your rating: <strong>\${userScore}/10</strong>\` : 'Pick your score:'}</p>
+        <div class="star-select">\${buttons}</div>
+        \${communityHtml}
+      \`;
+    }
+
+    function submitRating(score) {
+      Auth.rateShow(SHOW_ID, score);
+      renderRatingWidget();
+    }
+
+    renderRatingWidget();
+  </script>
+</body>
+</html>`;
+}
+
+let count = 0;
+for (const show of shows) {
+  const html = buildPage(show);
+  const outPath = path.join(reviewsDir, `${show.id}.html`);
+  fs.writeFileSync(outPath, html, 'utf8');
+  count++;
+  console.log(`Written: reviews/${show.id}.html`);
+}
+
+console.log(`\nDone. Generated ${count} review pages.`);
