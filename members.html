@@ -12,10 +12,11 @@
 <body>
   <nav class="navbar" data-root="">
     <div class="nav-container">
-      <a href="index.html" class="brand">Best Shows</a>
+      <a href="index.html" class="brand">Best Shows 2</a>
       <ul class="nav-menu">
         <li><a href="index.html#reviews">Reviews</a></li>
         <li><a href="index.html#top">Top Picks</a></li>
+        <li><a href="how-we-rate.html">How We Rate</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -28,7 +29,7 @@
   <section class="page-hero">
     <div class="container">
       <h1 id="member-greeting">My Ratings</h1>
-      <p class="hero-subtitle" id="member-subtitle">Your personal rating history on Best Shows.</p>
+      <p class="hero-subtitle" id="member-subtitle">Your personal rating history on Best Shows 2.</p>
     </div>
   </section>
 
@@ -42,17 +43,18 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <h3>Best Shows</h3>
+          <h3>Best Shows 2</h3>
           <p>Candid reviews. No payola.</p>
         </div>
         <div class="footer-links">
           <a href="index.html#reviews">Reviews</a>
           <a href="index.html#top">Top Picks</a>
+          <a href="how-we-rate.html">How We Rate</a>
           <a href="about.html">About</a>
           <a href="contact.html">Contact</a>
         </div>
         <div class="footer-copy">
-          <p>&copy; 2025 Best Shows. All rights reserved.</p>
+          <p>&copy; 2025 Best Shows 2. All rights reserved.</p>
         </div>
       </div>
     </div>
@@ -80,7 +82,7 @@
       `;
     } else {
       document.getElementById('member-greeting').textContent = `Hey, ${user.username}`;
-      document.getElementById('member-subtitle').textContent = 'Your ratings and activity on Best Shows.';
+      document.getElementById('member-subtitle').textContent = 'Your ratings and watchlist on Best Shows 2.';
 
       const userRatings = Auth.getAllUserRatings();
       const ratedIds = Object.keys(userRatings);
@@ -101,7 +103,7 @@
         <div class="stats-row">
           <div class="stat-box"><span class="num">${ratedIds.length}</span><span class="lbl">Shows Rated</span></div>
           <div class="stat-box"><span class="num">${avgScore}</span><span class="lbl">Avg Your Score</span></div>
-          <div class="stat-box"><span class="num">${window.SHOWS_DATA ? window.SHOWS_DATA.length - ratedIds.length : '—'}</span><span class="lbl">Still to Rate</span></div>
+          <div class="stat-box"><span class="num" id="watchlist-count">0</span><span class="lbl">Watchlist</span></div>
         </div>
 
         ${ratedIds.length === 0 ? `
@@ -127,7 +129,11 @@
               `;
             }).join('')}
           </div>
+        `}
 
+        <div id="watchlist-section" style="margin-top:3rem;"></div>
+
+        ${ratedIds.length > 0 ? `
           <h3 style="font-size:1.25rem; font-weight:700; margin:3rem 0 1.25rem;">Still to Rate</h3>
           <div class="my-ratings-grid">
             ${(window.SHOWS_DATA || []).filter(s => !userRatings[s.id]).map(show => `
@@ -140,8 +146,41 @@
               </a>
             `).join('')}
           </div>
-        `}
+        ` : ''}
       `;
+    }
+
+    // Render watchlist
+    const watchlist = Auth.getWatchlist();
+    const wlCountEl = document.getElementById('watchlist-count');
+    if (wlCountEl) wlCountEl.textContent = watchlist.length;
+
+    const wlSection = document.getElementById('watchlist-section');
+    if (wlSection && user) {
+      if (watchlist.length === 0) {
+        wlSection.innerHTML = `
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:1.25rem;">Watchlist</h3>
+          <div class="empty-state" style="padding:2rem;">
+            <h3>Nothing saved yet</h3>
+            <p>On any review page, click "Add to Watchlist" to save it here.</p>
+          </div>`;
+      } else {
+        const cards = watchlist.map(id => {
+          const show = (window.SHOWS_DATA || []).find(s => s.id === id);
+          if (!show) return '';
+          return `
+            <a href="reviews/${id}.html" class="my-rating-card">
+              <div>
+                <div class="title">${show.title}</div>
+                <div class="meta">${show.type} &middot; ${show.year}</div>
+              </div>
+              <div class="my-score" style="color:var(--text-muted); font-size:0.85rem;">&#10003; List</div>
+            </a>`;
+        }).join('');
+        wlSection.innerHTML = `
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:1.25rem;">Watchlist (${watchlist.length})</h3>
+          <div class="my-ratings-grid">${cards}</div>`;
+      }
     }
   </script>
 </body>

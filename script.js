@@ -50,3 +50,75 @@ if (contactForm) {
     contactForm.reset();
   });
 }
+
+// ── Auto-render on review pages ──────────────────────────────────────────────
+// Called after SHOW_ID and SHOWS_DATA are available (inline scripts set these).
+function renderDimensionalRatings(showId) {
+  const show = (window.SHOWS_DATA || []).find(s => s.id === showId);
+  if (!show || !show.ratings) return;
+
+  const reviewFooter = document.querySelector('.review-footer');
+  if (!reviewFooter) return;
+
+  const dims = [
+    { key: 'story',          label: 'Story & Writing' },
+    { key: 'performances',   label: 'Performances'    },
+    { key: 'craft',          label: 'Direction & Craft'},
+    { key: 'rewatchability', label: 'Rewatchability'  }
+  ];
+
+  const rows = dims.map(d => {
+    const val = show.ratings[d.key];
+    const pct = (val / 10) * 100;
+    const cls = val >= 9 ? 'high' : val >= 7.5 ? 'mid' : 'low';
+    return `
+      <div class="rating-bar-row">
+        <span class="rating-bar-label">${d.label}</span>
+        <div class="rating-bar-track">
+          <div class="rating-bar-fill ${cls}" style="width:${pct}%"></div>
+        </div>
+        <span class="rating-bar-val">${val}</span>
+      </div>`;
+  }).join('');
+
+  const breakdown = document.createElement('div');
+  breakdown.className = 'ratings-breakdown';
+  breakdown.innerHTML = `<h4>Critic Breakdown</h4>${rows}`;
+  reviewFooter.appendChild(breakdown);
+}
+
+function renderWatchlistButton(showId) {
+  const ratingBox = document.getElementById('rating-box');
+  if (!ratingBox) return;
+
+  function draw() {
+    const user = Auth.currentUser();
+    if (!user) return;
+    let btn = document.getElementById('watchlist-btn');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.id = 'watchlist-btn';
+      btn.className = 'watchlist-btn';
+      ratingBox.after(btn);
+    }
+    const on = Auth.isOnWatchlist(showId);
+    btn.className = 'watchlist-btn' + (on ? ' on-watchlist' : '');
+    btn.innerHTML = on ? '&#10003; On Watchlist' : '+ Add to Watchlist';
+    btn.onclick = () => {
+      if (Auth.isOnWatchlist(showId)) {
+        Auth.removeFromWatchlist(showId);
+      } else {
+        Auth.addToWatchlist(showId);
+      }
+      draw();
+    };
+  }
+  draw();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof SHOW_ID !== 'undefined') {
+    renderDimensionalRatings(SHOW_ID);
+    renderWatchlistButton(SHOW_ID);
+  }
+});

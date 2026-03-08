@@ -38,6 +38,12 @@ const TV_RATINGS = {
   'NC-17': 'Adults only — no one 17 and under admitted (film)'
 };
 
+// Critic rating dimensions:
+//   story        — writing, narrative structure, pacing, dialogue
+//   performances — acting, casting, character depth
+//   craft        — direction, cinematography, score, production design
+//   rewatchability — how well it holds up on repeat viewings
+
 const shows = [
   {
     id: 'severance',
@@ -48,6 +54,7 @@ const shows = [
     seasons: '2 Seasons',
     officialRating: 'TV-MA',
     criticsScore: 9.5,
+    ratings: { story: 9.4, performances: 9.2, craft: 9.8, rewatchability: 8.5 },
     genres: ['Thriller', 'Mystery', 'Drama', 'Sci-Fi'],
     contentAdvisories: ['Violence', 'Mental Health Themes', 'Suicide / Self-Harm', 'Strong Language'],
     excerpt: 'A masterclass in atmosphere and tension. The show explores work-life balance through a terrifying premise with production design that feels sterile and sinister.',
@@ -62,6 +69,7 @@ const shows = [
     seasons: '3 Seasons',
     officialRating: 'TV-MA',
     criticsScore: 9.0,
+    ratings: { story: 9.5, performances: 9.8, craft: 9.2, rewatchability: 8.0 },
     genres: ['Drama', 'Mystery', 'Supernatural'],
     contentAdvisories: ['Violence', 'Suicide / Self-Harm', 'Mental Health Themes', 'Strong Language', 'Sexual Content', 'Drug Use'],
     excerpt: 'Three years after 2% of the world vanishes, this series asks what it means to keep living when you don\'t know why. Season 2 remains one of television\'s most profound achievements.',
@@ -76,10 +84,11 @@ const shows = [
     seasons: null,
     officialRating: 'PG-13',
     criticsScore: 9.2,
+    ratings: { story: 8.5, performances: 9.0, craft: 9.9, rewatchability: 9.2 },
     genres: ['Sci-Fi', 'Epic', 'Adventure'],
     contentAdvisories: ['Violence', 'War Violence', 'Strong Language'],
-    excerpt: 'Rarely does a sequel match the quality of its predecessor, let alone surpass it. Villeneuve delivers an operatic sci-fi epic with breathtaking scale and emotional weight.',
-    review: `Denis Villeneuve completes his adaptation of Frank Herbert's first Dune novel with operatic confidence. Where Part One was deliberate setup, Part Two is payoff — grand, sensory, and emotionally overwhelming.\n\nTimothée Chalamet's Paul Atreides completes one of cinema's great tragic arcs. Zendaya's Chani is the moral compass the film desperately needs. Austin Butler's Feyd-Rautha is pure menace. The sandworm ride sequence alone justifies the IMAX price of admission.\n\nVilleneuve doesn't simplify Herbert's critique of messianic politics — he leans into it. The ending is deliberately uncomfortable. This is blockbuster filmmaking at its most ambitious and most honest.`
+    excerpt: 'Denis Villeneuve\'s epic conclusion is a technical marvel — a film that demands the biggest screen possible and rewards it with some of the most stunning imagery in modern cinema.',
+    review: `Denis Villeneuve completes his adaptation of Frank Herbert's Dune with a film of staggering visual ambition. Where Part One was establishment, Part Two is escalation: the politics sharpen, the violence intensifies, and the moral critique of messianic narratives comes into full focus.\n\nTimothée Chalamet and Zendaya finally share the screen meaningfully, and both are excellent. Austin Butler's Feyd-Rautha is a menacing highlight — all coiled menace and pale-eyed threat. The Harkonnen sequences, shot in stark monochrome, are among the most distinctive images Villeneuve has put to film.\n\nGreig Fraser's cinematography and Hans Zimmer's score work in terrifying harmony. This is blockbuster filmmaking at its most serious and ambitious. The ending resists easy triumph. That's the point.`
   },
   {
     id: 'challengers',
@@ -90,6 +99,7 @@ const shows = [
     seasons: null,
     officialRating: 'R',
     criticsScore: 8.8,
+    ratings: { story: 8.8, performances: 9.5, craft: 9.2, rewatchability: 8.5 },
     genres: ['Drama', 'Romance', 'Sports'],
     contentAdvisories: ['Sexual Content', 'Strong Language'],
     excerpt: 'A taut, sensual drama where tennis matches become love triangles. The editing pulses like a heartbeat, and Zendaya commands every frame she\'s in.',
@@ -104,6 +114,7 @@ const shows = [
     seasons: '3 Seasons',
     officialRating: 'TV-MA',
     criticsScore: 9.4,
+    ratings: { story: 9.0, performances: 9.5, craft: 9.8, rewatchability: 9.0 },
     genres: ['Drama', 'Comedy', 'Slice-of-Life'],
     contentAdvisories: ['Strong Language', 'Mental Health Themes', 'Drug Use', 'Alcohol Use', 'Violence', 'Emotional Abuse'],
     excerpt: 'High-stakes kitchen drama filmed with the intensity of a war movie. Transforms into something richer — a portrait of community, trauma, and redemption.',
@@ -118,10 +129,11 @@ const shows = [
     seasons: null,
     officialRating: 'R',
     criticsScore: 9.1,
+    ratings: { story: 9.8, performances: 9.5, craft: 9.5, rewatchability: 9.5 },
     genres: ['Thriller', 'Dark Comedy', 'Drama'],
     contentAdvisories: ['Violence', 'Graphic Violence', 'Strong Language'],
     excerpt: 'Bong Joon-ho\'s genre-bending masterpiece. Funny, tense, and socially sharp — it never misses.',
-    review: `Parasite is a perfect film. Not a great film, not a near-perfect film — perfect. Bong Joon-ho constructs a class warfare thriller that works simultaneously as dark comedy, horror, and social tragedy, with a screenplay so tight it feels inevitable in retrospect.\n\nThe Kim family infiltrate the wealthy Park household one by one, each posing as an unrelated professional. What follows is a escalation so well-engineered that every reveal feels both shocking and entirely logical.\n\nThe film's control of tone is extraordinary — it's genuinely funny, then viscerally disturbing, then heartbreaking, sometimes within the same scene. Song Kang-ho's performance as Ki-taek is quietly devastating. Winner of the Palme d'Or and four Academy Awards including Best Picture. Required viewing.`
+    review: `Parasite is a perfect film. Not a great film, not a near-perfect film — perfect. Bong Joon-ho constructs a class warfare thriller that works simultaneously as dark comedy, horror, and social tragedy, with a screenplay so tight it feels inevitable in retrospect.\n\nThe Kim family infiltrate the wealthy Park household one by one, each posing as an unrelated professional. What follows is an escalation so well-engineered that every reveal feels both shocking and entirely logical.\n\nThe film's control of tone is extraordinary — it's genuinely funny, then viscerally disturbing, then heartbreaking, sometimes within the same scene. Song Kang-ho's performance as Ki-taek is quietly devastating. Winner of the Palme d'Or and four Academy Awards including Best Picture. Required viewing.`
   },
   {
     id: 'breaking-bad',
@@ -132,6 +144,7 @@ const shows = [
     seasons: '5 Seasons',
     officialRating: 'TV-MA',
     criticsScore: 9.8,
+    ratings: { story: 9.8, performances: 9.7, craft: 9.5, rewatchability: 9.2 },
     genres: ['Crime', 'Drama', 'Thriller'],
     contentAdvisories: ['Violence', 'Graphic Violence', 'Drug Use', 'Strong Language', 'Torture', 'Death of a Child'],
     excerpt: 'The transformation of a high school chemistry teacher into a drug kingpin, told across five seasons of near-flawless television. The gold standard of prestige drama.',
@@ -146,6 +159,7 @@ const shows = [
     seasons: '5 Seasons',
     officialRating: 'TV-MA',
     criticsScore: 9.7,
+    ratings: { story: 9.8, performances: 9.8, craft: 9.5, rewatchability: 8.5 },
     genres: ['Crime', 'Drama', 'Social Commentary'],
     contentAdvisories: ['Violence', 'Drug Use', 'Strong Language', 'Racism / Discrimination', 'Child Abuse', 'Death of a Child'],
     excerpt: 'The greatest television drama ever made. A systemic portrait of Baltimore — police, drug trade, schools, docks, media — that indicts institutions rather than individuals.',
@@ -160,6 +174,7 @@ const shows = [
     seasons: '4 Seasons',
     officialRating: 'TV-MA',
     criticsScore: 9.3,
+    ratings: { story: 9.5, performances: 9.8, craft: 9.2, rewatchability: 9.0 },
     genres: ['Drama', 'Dark Comedy', 'Satire'],
     contentAdvisories: ['Strong Language', 'Sexual Content', 'Drug Use', 'Alcohol Use', 'Emotional Abuse'],
     excerpt: 'Shakespearean dysfunction among the ultra-wealthy. The finest ensemble on television, writing that crackles, and a finale that earns every emotion it demands.',
@@ -174,6 +189,7 @@ const shows = [
     seasons: '6 Seasons',
     officialRating: 'TV-MA',
     criticsScore: 9.2,
+    ratings: { story: 9.5, performances: 9.8, craft: 9.8, rewatchability: 9.0 },
     genres: ['Crime', 'Drama', 'Legal Thriller'],
     contentAdvisories: ['Violence', 'Strong Language', 'Drug Use'],
     excerpt: 'A prequel that surpassed its parent show. Jimmy McGill\'s transformation into Saul Goodman is a tragedy worthy of the Greeks.',
@@ -188,6 +204,7 @@ const shows = [
     seasons: '2 Seasons',
     officialRating: 'TV-MA',
     criticsScore: 9.1,
+    ratings: { story: 9.5, performances: 9.8, craft: 9.0, rewatchability: 9.5 },
     genres: ['Comedy', 'Drama', 'Romance'],
     contentAdvisories: ['Strong Language', 'Sexual Content', 'Suicide / Self-Harm', 'Mental Health Themes', 'Grief'],
     excerpt: 'Phoebe Waller-Bridge\'s six-hour masterpiece. A comedy about grief that disguises itself as a sex comedy until it isn\'t. The fourth-wall breaks are technically perfect.',
@@ -202,6 +219,7 @@ const shows = [
     seasons: '4 Seasons',
     officialRating: 'TV-MA',
     criticsScore: 8.9,
+    ratings: { story: 9.2, performances: 9.5, craft: 9.0, rewatchability: 8.8 },
     genres: ['Comedy', 'Drama', 'Surrealism'],
     contentAdvisories: ['Violence', 'Strong Language', 'Drug Use', 'Racism / Discrimination', 'Mental Health Themes'],
     excerpt: 'Donald Glover\'s shape-shifting portrait of Black life, the music industry, and American strangeness. Refuses to be categorized and is better for it.',
@@ -216,6 +234,7 @@ const shows = [
     seasons: 'Miniseries (5 Episodes)',
     officialRating: 'TV-MA',
     criticsScore: 9.4,
+    ratings: { story: 9.5, performances: 9.5, craft: 9.5, rewatchability: 8.5 },
     genres: ['Historical Drama', 'Thriller'],
     contentAdvisories: ['Graphic Violence', 'Death of a Child', 'Radiation Effects', 'Animal Cruelty', 'Mental Health Themes'],
     excerpt: 'A five-episode HBO miniseries that functions as both historical record and horror film. What happens when those in power lie about the cost of their lies.',
@@ -230,6 +249,7 @@ const shows = [
     seasons: null,
     officialRating: 'R',
     criticsScore: 9.0,
+    ratings: { story: 9.0, performances: 9.5, craft: 9.5, rewatchability: 8.8 },
     genres: ['Historical Drama', 'Biopic', 'Thriller'],
     contentAdvisories: ['Sexual Content', 'Nudity', 'Strong Language', 'War Violence', 'Mental Health Themes'],
     excerpt: 'Christopher Nolan\'s most ambitious film: a three-hour IMAX epic about the man who built the bomb and spent the rest of his life reckoning with it.',
@@ -244,6 +264,7 @@ const shows = [
     seasons: null,
     officialRating: 'R',
     criticsScore: 9.3,
+    ratings: { story: 9.5, performances: 9.5, craft: 9.0, rewatchability: 9.5 },
     genres: ['Sci-Fi', 'Action', 'Drama', 'Comedy'],
     contentAdvisories: ['Violence', 'Strong Language', 'Mental Health Themes', 'Suicide / Self-Harm'],
     excerpt: 'The Daniels\' multiverse film about a Chinese-American laundromat owner is also the best film about nihilism, kindness, and mother-daughter relationships in years.',
@@ -258,6 +279,7 @@ const shows = [
     seasons: '7 Seasons',
     officialRating: 'TV-MA',
     criticsScore: 9.2,
+    ratings: { story: 9.5, performances: 9.5, craft: 9.2, rewatchability: 9.0 },
     genres: ['Drama', 'Period', 'Character Study'],
     contentAdvisories: ['Sexual Content', 'Alcohol Use', 'Drug Use', 'Smoking', 'Racism / Discrimination', 'Domestic Violence', 'Strong Language'],
     excerpt: 'Matthew Weiner\'s slow study of identity, advertising, and 1960s America. Jon Hamm\'s Don Draper is one of television\'s great constructed characters.',
@@ -272,6 +294,7 @@ const shows = [
     seasons: '6 Seasons',
     officialRating: 'TV-MA',
     criticsScore: 9.6,
+    ratings: { story: 9.8, performances: 9.9, craft: 9.5, rewatchability: 9.5 },
     genres: ['Crime', 'Drama', 'Character Study'],
     contentAdvisories: ['Violence', 'Graphic Violence', 'Strong Language', 'Sexual Content', 'Nudity', 'Drug Use', 'Alcohol Use', 'Domestic Violence'],
     excerpt: 'The show that invented modern prestige television. Tony Soprano is the template from which every subsequent antihero was cast. Still incomparable.',
@@ -286,6 +309,7 @@ const shows = [
     seasons: 'Limited Series (18 Parts)',
     officialRating: 'TV-MA',
     criticsScore: 9.0,
+    ratings: { story: 8.8, performances: 9.5, craft: 9.8, rewatchability: 8.0 },
     genres: ['Mystery', 'Horror', 'Surrealism', 'Drama'],
     contentAdvisories: ['Graphic Violence', 'Sexual Content', 'Strong Language', 'Drug Use', 'Flashing Lights', 'Mental Health Themes', 'Death of a Child'],
     excerpt: 'David Lynch\'s 18-hour film that defies genre and occasionally reality. A meditation on nostalgia, grief, and the failure of heroism. Not for the faint-hearted.',
@@ -300,6 +324,7 @@ const shows = [
     seasons: '1 Season (8 Episodes)',
     officialRating: 'TV-MA',
     criticsScore: 9.3,
+    ratings: { story: 9.5, performances: 9.8, craft: 9.8, rewatchability: 9.2 },
     genres: ['Crime', 'Mystery', 'Thriller', 'Horror'],
     contentAdvisories: ['Violence', 'Graphic Violence', 'Sexual Content', 'Nudity', 'Strong Language', 'Drug Use', 'Ritual Abuse', 'Death of a Child'],
     excerpt: 'Nic Pizzolatto\'s eight-episode murder mystery is formally perfect: two performances, one sustained atmosphere of dread, and a closing monologue that earns optimism through nihilism.',
@@ -314,6 +339,7 @@ const shows = [
     seasons: null,
     officialRating: 'R',
     criticsScore: 9.2,
+    ratings: { story: 9.5, performances: 9.8, craft: 9.8, rewatchability: 9.0 },
     genres: ['Drama', 'Coming-of-Age'],
     contentAdvisories: ['Drug Use', 'Violence', 'Strong Language', 'Sexual Content', 'Child Abuse', 'Domestic Violence'],
     excerpt: 'Barry Jenkins\' triptych portrait of a Black gay man in Miami. Intimate, poetic, and devastating. One of the finest films of the century.',

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How We Rate | Best Shows 2</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="subpage">
+  <nav class="navbar" data-root="">
+    <div class="nav-container">
+      <a href="index.html" class="brand">Best Shows 2</a>
+      <ul class="nav-menu">
+        <li><a href="index.html#reviews">Reviews</a></li>
+        <li><a href="index.html#top">Top Picks</a></li>
+        <li><a href="how-we-rate.html">How We Rate</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <h1>How We Rate</h1>
+      <p class="hero-subtitle">Our scoring system, explained plainly — no hidden agenda, no payola.</p>
+    </div>
+  </div>
+
+  <section class="page-content">
+    <div class="container">
+      <div class="prose-content">
+
+        <h2>The Overall Score</h2>
+        <p>Every show and film receives a single <strong>critic score out of 10</strong>. This is not an average of the four breakdown dimensions — it's a holistic editorial judgment that weights all factors, including cultural impact, originality, and how well a work achieves its own goals.</p>
+        <p>A 9.0 or above is exceptional — reserved for works we consider essential. A 7.5–8.9 is excellent. Below 7.5 means it's good but flawed. We don't review things we consider mediocre or bad; there are enough bad review sites already.</p>
+
+        <h2>The Four Critic Dimensions</h2>
+        <p>Each title is also scored on four specific dimensions, displayed as rating bars on every review page. These give a more nuanced picture than a single number.</p>
+
+        <div style="margin: 1.5rem 0; display: flex; flex-direction: column; gap: 1.25rem;">
+          <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;">
+            <h4 style="color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem;">Story &amp; Writing</h4>
+            <p style="color: var(--text-muted); margin: 0; font-size: 0.95rem; line-height: 1.7;">Narrative structure, pacing, dialogue, thematic depth, and the quality of the screenplay or writers' room. Does it earn its runtime? Does the story go somewhere meaningful?</p>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;">
+            <h4 style="color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem;">Performances</h4>
+            <p style="color: var(--text-muted); margin: 0; font-size: 0.95rem; line-height: 1.7;">The quality of the acting, casting, and character development. This includes ensemble work — a great cast where everyone earns their scenes scores higher than a single standout surrounded by weakness.</p>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;">
+            <h4 style="color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem;">Direction &amp; Craft</h4>
+            <p style="color: var(--text-muted); margin: 0; font-size: 0.95rem; line-height: 1.7;">Visual storytelling, cinematography, editing, score, production design, and sound. The craft score rewards shows and films where the technical elements actively serve the story rather than just looking expensive.</p>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;">
+            <h4 style="color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem;">Rewatchability</h4>
+            <p style="color: var(--text-muted); margin: 0; font-size: 0.95rem; line-height: 1.7;">How well it holds up the second, third, or tenth time. Some shows reveal new layers on rewatch; others burn bright once and fade. This isn't a flaw either way — it's useful information for how you might engage with it.</p>
+          </div>
+        </div>
+
+        <h2>Official Ratings</h2>
+        <p>We display the official content rating assigned by the MPAA (for films) or the TV Parental Guidelines (for television). These are not our ratings — they're the industry-standard classifications:</p>
+        <ul>
+          <li><strong>TV-Y / TV-Y7</strong> — Children's programming</li>
+          <li><strong>TV-G / G</strong> — General audiences, all ages</li>
+          <li><strong>TV-PG / PG</strong> — Parental guidance suggested</li>
+          <li><strong>TV-14 / PG-13</strong> — Parents strongly cautioned, may be unsuitable for under-14/13</li>
+          <li><strong>TV-MA / R</strong> — Mature audiences; not suitable for under 17</li>
+          <li><strong>NC-17</strong> — Adults only</li>
+        </ul>
+
+        <h2>Content Advisories</h2>
+        <p>Every title includes a list of content advisories — specific themes or depictions viewers may want to know about before watching. We use the same advisory categories established on the original Best Shows site:</p>
+        <ul id="advisory-list"></ul>
+        <p>These are not value judgments about the content — they are neutral descriptors. A show with "Graphic Violence" is not worse than one without; we're just giving you the information to choose.</p>
+        <p>If a specific show is missing an advisory you believe should be listed, <a href="contact.html" style="color: var(--accent);">contact us</a>.</p>
+
+        <h2>Member Ratings</h2>
+        <p>Registered members can rate any show or film on a <strong>1–10 scale</strong>. Member ratings are independent of the critic score. The community average is displayed on each review page alongside the number of ratings received.</p>
+        <p>Member ratings are anonymous to other users — only you can see your personal score. The community average is the only aggregated number we show.</p>
+        <p>Members can also add titles to their <strong>Watchlist</strong> — a personal list accessible from the members dashboard to track what you want to watch next.</p>
+        <p><a href="register.html" style="color: var(--accent);">Join free</a> to start rating and building your watchlist.</p>
+
+        <h2>What We Don't Do</h2>
+        <ul>
+          <li>We don't accept payment for reviews or placement.</li>
+          <li>We don't adjust scores based on studio relationships.</li>
+          <li>We don't review things we consider below our threshold — we'd rather say nothing than inflate a mediocre show.</li>
+          <li>We don't aggregate scores from other critics. Everything here is original editorial opinion.</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Best Shows 2</h3>
+          <p>Candid reviews. No payola.</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html#reviews">Reviews</a>
+          <a href="index.html#top">Top Picks</a>
+          <a href="how-we-rate.html">How We Rate</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="members.html">My Ratings</a>
+        </div>
+        <div class="footer-copy">
+          <p>&copy; 2025 Best Shows 2. All rights reserved.</p>
+          <p class="small"><a href="privacy.html" style="color:inherit;">Privacy Policy</a> &middot; <a href="terms.html" style="color:inherit;">Terms of Use</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/shows.js"></script>
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Populate advisory list from data
+    const list = document.getElementById('advisory-list');
+    if (list && window.CONTENT_ADVISORIES) {
+      list.innerHTML = window.CONTENT_ADVISORIES.map(a => `<li>${a}</li>`).join('');
+    }
+  </script>
+</body>
+</html>

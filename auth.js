@@ -2,9 +2,10 @@
 // Replace with server-side auth in production
 
 const Auth = (() => {
-  const USERS_KEY = 'bestshows_users';
-  const SESSION_KEY = 'bestshows_session';
-  const RATINGS_KEY = 'bestshows_ratings';
+  const USERS_KEY = 'bestshows2_users';
+  const SESSION_KEY = 'bestshows2_session';
+  const RATINGS_KEY = 'bestshows2_ratings';
+  const WATCHLIST_KEY = 'bestshows2_watchlist';
 
   function getUsers() {
     return JSON.parse(localStorage.getItem(USERS_KEY) || '{}');
@@ -109,6 +110,39 @@ const Auth = (() => {
         }
       }
       return result;
+    },
+
+    // Watchlist
+    getWatchlist() {
+      const user = getSession();
+      if (!user) return [];
+      const all = JSON.parse(localStorage.getItem(WATCHLIST_KEY) || '{}');
+      return all[user.email] || [];
+    },
+
+    addToWatchlist(showId) {
+      const user = getSession();
+      if (!user) return { ok: false, error: 'Must be logged in.' };
+      const all = JSON.parse(localStorage.getItem(WATCHLIST_KEY) || '{}');
+      if (!all[user.email]) all[user.email] = [];
+      if (!all[user.email].includes(showId)) all[user.email].push(showId);
+      localStorage.setItem(WATCHLIST_KEY, JSON.stringify(all));
+      return { ok: true };
+    },
+
+    removeFromWatchlist(showId) {
+      const user = getSession();
+      if (!user) return { ok: false, error: 'Must be logged in.' };
+      const all = JSON.parse(localStorage.getItem(WATCHLIST_KEY) || '{}');
+      if (all[user.email]) {
+        all[user.email] = all[user.email].filter(id => id !== showId);
+      }
+      localStorage.setItem(WATCHLIST_KEY, JSON.stringify(all));
+      return { ok: true };
+    },
+
+    isOnWatchlist(showId) {
+      return this.getWatchlist().includes(showId);
     }
   };
 })();
