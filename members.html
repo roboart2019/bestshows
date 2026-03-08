@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Ratings | Best Shows</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar" data-root="">
+    <div class="nav-container">
+      <a href="index.html" class="brand">Best Shows</a>
+      <ul class="nav-menu">
+        <li><a href="index.html#reviews">Reviews</a></li>
+        <li><a href="index.html#top">Top Picks</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 id="member-greeting">My Ratings</h1>
+      <p class="hero-subtitle" id="member-subtitle">Your personal rating history on Best Shows.</p>
+    </div>
+  </section>
+
+  <section class="members-section">
+    <div class="container" id="members-content">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Best Shows</h3>
+          <p>Candid reviews. No payola.</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html#reviews">Reviews</a>
+          <a href="index.html#top">Top Picks</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-copy">
+          <p>&copy; 2025 Best Shows. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/shows.js"></script>
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+  <script>
+    const user = Auth.currentUser();
+    const content = document.getElementById('members-content');
+
+    if (!user) {
+      document.getElementById('member-greeting').textContent = 'Members Only';
+      document.getElementById('member-subtitle').textContent = 'Log in or create a free account to rate shows.';
+      content.innerHTML = `
+        <div class="empty-state">
+          <h3>You're not logged in</h3>
+          <p>Create a free account to start rating shows and tracking your history.</p>
+          <div class="hero-actions" style="justify-content:center;">
+            <a href="register.html" class="cta-button">Join Free</a>
+            <a href="login.html" class="cta-button outline">Log In</a>
+          </div>
+        </div>
+      `;
+    } else {
+      document.getElementById('member-greeting').textContent = `Hey, ${user.username}`;
+      document.getElementById('member-subtitle').textContent = 'Your ratings and activity on Best Shows.';
+
+      const userRatings = Auth.getAllUserRatings();
+      const ratedIds = Object.keys(userRatings);
+      const joined = new Date(user.joined).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+      let avgScore = '—';
+      if (ratedIds.length) {
+        const sum = ratedIds.reduce((a, id) => a + userRatings[id], 0);
+        avgScore = (sum / ratedIds.length).toFixed(1);
+      }
+
+      content.innerHTML = `
+        <div class="members-header">
+          <h2>Dashboard</h2>
+          <p>Member since ${joined}</p>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box"><span class="num">${ratedIds.length}</span><span class="lbl">Shows Rated</span></div>
+          <div class="stat-box"><span class="num">${avgScore}</span><span class="lbl">Avg Your Score</span></div>
+          <div class="stat-box"><span class="num">${window.SHOWS_DATA ? window.SHOWS_DATA.length - ratedIds.length : '—'}</span><span class="lbl">Still to Rate</span></div>
+        </div>
+
+        ${ratedIds.length === 0 ? `
+          <div class="empty-state">
+            <h3>No ratings yet</h3>
+            <p>Head to any review page and rate it 1–10. Your history appears here.</p>
+            <a href="index.html#reviews" class="cta-button">Browse Reviews</a>
+          </div>
+        ` : `
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:1.25rem;">Your Ratings</h3>
+          <div class="my-ratings-grid">
+            ${ratedIds.map(id => {
+              const show = window.SHOWS_DATA && window.SHOWS_DATA.find(s => s.id === id);
+              if (!show) return '';
+              return `
+                <a href="reviews/${id}.html" class="my-rating-card">
+                  <div>
+                    <div class="title">${show.title}</div>
+                    <div class="meta">${show.type} &middot; ${show.year}</div>
+                  </div>
+                  <div class="my-score">${userRatings[id]}</div>
+                </a>
+              `;
+            }).join('')}
+          </div>
+
+          <h3 style="font-size:1.25rem; font-weight:700; margin:3rem 0 1.25rem;">Still to Rate</h3>
+          <div class="my-ratings-grid">
+            ${(window.SHOWS_DATA || []).filter(s => !userRatings[s.id]).map(show => `
+              <a href="reviews/${show.id}.html" class="my-rating-card">
+                <div>
+                  <div class="title">${show.title}</div>
+                  <div class="meta">${show.type} &middot; ${show.year}</div>
+                </div>
+                <div class="my-score" style="color:var(--text-muted); font-size:1rem;">Rate</div>
+              </a>
+            `).join('')}
+          </div>
+        `}
+      `;
+    }
+  </script>
+</body>
+</html>

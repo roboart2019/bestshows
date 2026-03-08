@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Parasite (2019) Review | Best Shows</title>
+  <title>Parasite Review | Best Shows</title>
   <link rel="stylesheet" href="../style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="subpage review-page">
-  <nav class="navbar">
+  <nav class="navbar" data-root="../">
     <div class="nav-container">
       <a href="../index.html" class="brand">Best Shows</a>
       <ul class="nav-menu">
         <li><a href="../index.html#reviews">Reviews</a></li>
         <li><a href="../index.html#top">Top Picks</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -28,27 +28,42 @@
   <section class="review-single">
     <div class="container">
       <div class="review-header">
-        <span class="media-badge">Film</span>
+        <span class="media-badge film">Film</span>
+        <span class="official-rating r">R</span>
         <div class="rating rating-high">9.1</div>
       </div>
+
       <h1>Parasite</h1>
-      <p class="review-meta">2019 • 132 min • Directed by Bong Joon-ho</p>
-      
+      <p class="review-meta">2019 &middot; Various streaming</p>
+
       <div class="review-body">
-        <p>Bong Joon-ho's genre-bending masterpiece that feels perfectly constructed from start to finish. It's a dark comedy, a thriller, a social satire—and all of it works in harmony. The story of two families, one wealthy and one struggling, spiraling into chaos is both wildly entertaining and deeply unsettling.</p>
-        
-        <p>The film is a masterclass in visual storytelling. Every frame is composed with care, from the elevated house down to the semi-basement apartment. The pacing is impeccable—there's not a single wasted moment. The tone shifts subtly but never loses its cohesion.</p>
-        
-        <p>It won the Palme d'Or and the Oscar for Best Picture, becoming the first non-English language film to do so. That wasn't just symbolism; it was recognition of a film that operates at the highest level of craft while remaining wildly accessible. If you haven't seen it yet, stop reading and watch it now.</p>
+        <p>Parasite is a perfect film. Not a great film, not a near-perfect film — perfect. Bong Joon-ho constructs a class warfare thriller that works simultaneously as dark comedy, horror, and social tragedy, with a screenplay so tight it feels inevitable in retrospect.</p>
+        <p>The Kim family infiltrate the wealthy Park household one by one, each posing as an unrelated professional. What follows is a escalation so well-engineered that every reveal feels both shocking and entirely logical.</p>
+        <p>The film's control of tone is extraordinary — it's genuinely funny, then viscerally disturbing, then heartbreaking, sometimes within the same scene. Song Kang-ho's performance as Ki-taek is quietly devastating. Winner of the Palme d'Or and four Academy Awards including Best Picture. Required viewing.</p>
       </div>
 
       <div class="review-footer">
-        <span class="tag">Thriller</span>
-        <span class="tag">Dark Comedy</span>
-        <span class="tag">Oscar Winner</span>
-        <span class="tag">Social Satire</span>
+        <div>
+          <div class="advisories-label">Content Advisories</div>
+          <div class="advisories">
+              <span class="advisory">Violence</span>
+              <span class="advisory">Graphic Violence</span>
+              <span class="advisory">Strong Language</span>
+          </div>
+        </div>
+        <div style="margin-top:1.25rem;">
+          <span class="tag">Thriller</span>
+              <span class="tag">Dark Comedy</span>
+              <span class="tag">Drama</span>
+        </div>
       </div>
-      
+
+      <!-- Member Rating Widget -->
+      <div class="member-rating-box" id="rating-box">
+        <h4>Rate This Film</h4>
+        <div id="rating-widget-content"></div>
+      </div>
+
       <a href="../index.html#reviews" class="back-link">&larr; Back to Reviews</a>
     </div>
   </section>
@@ -63,16 +78,64 @@
         <div class="footer-links">
           <a href="../index.html#reviews">Reviews</a>
           <a href="../index.html#top">Top Picks</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
+          <a href="../about.html">About</a>
+          <a href="../contact.html">Contact</a>
+          <a href="../members.html">My Ratings</a>
         </div>
         <div class="footer-copy">
           <p>&copy; 2025 Best Shows. All rights reserved.</p>
+          <p class="small"><a href="../privacy.html" style="color:inherit;">Privacy</a> &middot; <a href="../terms.html" style="color:inherit;">Terms</a></p>
         </div>
       </div>
     </div>
   </footer>
 
+  <script src="../data/shows.js"></script>
+  <script src="../auth.js"></script>
   <script src="../script.js"></script>
+  <script>
+    const SHOW_ID = 'parasite';
+
+    function renderRatingWidget() {
+      const user = Auth.currentUser();
+      const widget = document.getElementById('rating-widget-content');
+      const communityData = Auth.getShowRatings(SHOW_ID);
+      const communityHtml = communityData.count > 0
+        ? `<div class="community-score">
+            <span class="score-num">${communityData.average}</span>
+            <span class="score-label">Community avg &middot; ${communityData.count} rating${communityData.count !== 1 ? 's' : ''}</span>
+           </div>`
+        : '<div class="community-score"><span class="score-label">No community ratings yet. Be the first!</span></div>';
+
+      if (!user) {
+        widget.innerHTML = `
+          <p class="rating-msg" style="margin-bottom:0.75rem;">
+            <a href="../login.html" style="color:var(--accent);">Log in</a> or
+            <a href="../register.html" style="color:var(--accent);">join free</a> to rate this ${'film'}.
+          </p>
+          ${communityHtml}
+        `;
+        return;
+      }
+
+      const userScore = Auth.getUserRating(SHOW_ID);
+      const buttons = Array.from({length:10}, (_, i) => i+1).map(n =>
+        `<button class="${userScore === n ? 'selected' : ''}" data-score="${n}" onclick="submitRating(${n})">${n}</button>`
+      ).join('');
+
+      widget.innerHTML = `
+        <p class="rating-msg" style="margin-bottom:0.5rem;">${userScore ? `Your rating: <strong>${userScore}/10</strong>` : 'Pick your score:'}</p>
+        <div class="star-select">${buttons}</div>
+        ${communityHtml}
+      `;
+    }
+
+    function submitRating(score) {
+      Auth.rateShow(SHOW_ID, score);
+      renderRatingWidget();
+    }
+
+    renderRatingWidget();
+  </script>
 </body>
 </html>

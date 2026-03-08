@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Leftovers (2014–2017) Review | Best Shows</title>
+  <title>The Leftovers Review | Best Shows</title>
   <link rel="stylesheet" href="../style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="subpage review-page">
-  <nav class="navbar">
+  <nav class="navbar" data-root="../">
     <div class="nav-container">
       <a href="../index.html" class="brand">Best Shows</a>
       <ul class="nav-menu">
         <li><a href="../index.html#reviews">Reviews</a></li>
         <li><a href="../index.html#top">Top Picks</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -29,25 +29,44 @@
     <div class="container">
       <div class="review-header">
         <span class="media-badge">TV</span>
-        <div class="rating rating-high">9.0</div>
+        <span class="official-rating tvma">TV-MA</span>
+        <div class="rating rating-high">9</div>
       </div>
+
       <h1>The Leftovers</h1>
-      <p class="review-meta">2014–2017 • HBO • 3 Seasons</p>
-      
+      <p class="review-meta">2014–2017 &middot; HBO &middot; 3 Seasons</p>
+
       <div class="review-body">
-        <p>What happens when 2% of the world's population vanishes without explanation? This series, based on Tom Perrotta's novel, explores grief, faith, and meaning with unflinching honesty. Damon Lindelof's adaptation quickly transcends its source material to become something extraordinary.</p>
-        
-        <p>Season 1 sets up the mystery and raw trauma. Season 2 in Australia is arguably some of the best television ever made—a seismic shift in setting that deepens every character. Season 3 provides a haunting, ambiguous conclusion that rewards patient viewers.</p>
-        
-        <p>The performances are uniformly excellent, especially Justin Theroux, Carrie Coon, and Christopher Eccleston. The score by Max Richter is transcendent. This is a show about living with the unanswerable, and it finds beauty in the struggle.</p>
+        <p>Three years after 2% of the global population suddenly vanishes, The Leftovers follows those left behind — grief-stricken, angry, searching. It is one of the most emotionally ambitious shows ever made.</p>
+        <p>Based on Tom Perrotta's novel, Damon Lindelof transforms the premise into a meditation on grief, faith, and survival. Season 1 is bleak and uncompromising. Season 2 — set in the mysteriously untouched town of Jarden, Texas — is a masterpiece. Season 3 goes cosmic and beautiful.</p>
+        <p>Carrie Coon, Justin Theroux, and Regina King anchor the show with devastating performances. The Leftovers doesn't offer comfort or answers — it offers company in the dark. That's rarer and more valuable.</p>
       </div>
 
       <div class="review-footer">
-        <span class="tag">Drama</span>
-        <span class="tag">Mystery</span>
-        <span class="tag">Philosophical</span>
+        <div>
+          <div class="advisories-label">Content Advisories</div>
+          <div class="advisories">
+              <span class="advisory">Violence</span>
+              <span class="advisory">Suicide / Self-Harm</span>
+              <span class="advisory">Mental Health Themes</span>
+              <span class="advisory">Strong Language</span>
+              <span class="advisory">Sexual Content</span>
+              <span class="advisory">Drug Use</span>
+          </div>
+        </div>
+        <div style="margin-top:1.25rem;">
+          <span class="tag">Drama</span>
+              <span class="tag">Mystery</span>
+              <span class="tag">Supernatural</span>
+        </div>
       </div>
-      
+
+      <!-- Member Rating Widget -->
+      <div class="member-rating-box" id="rating-box">
+        <h4>Rate This Show</h4>
+        <div id="rating-widget-content"></div>
+      </div>
+
       <a href="../index.html#reviews" class="back-link">&larr; Back to Reviews</a>
     </div>
   </section>
@@ -62,16 +81,64 @@
         <div class="footer-links">
           <a href="../index.html#reviews">Reviews</a>
           <a href="../index.html#top">Top Picks</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
+          <a href="../about.html">About</a>
+          <a href="../contact.html">Contact</a>
+          <a href="../members.html">My Ratings</a>
         </div>
         <div class="footer-copy">
           <p>&copy; 2025 Best Shows. All rights reserved.</p>
+          <p class="small"><a href="../privacy.html" style="color:inherit;">Privacy</a> &middot; <a href="../terms.html" style="color:inherit;">Terms</a></p>
         </div>
       </div>
     </div>
   </footer>
 
+  <script src="../data/shows.js"></script>
+  <script src="../auth.js"></script>
   <script src="../script.js"></script>
+  <script>
+    const SHOW_ID = 'the-leftovers';
+
+    function renderRatingWidget() {
+      const user = Auth.currentUser();
+      const widget = document.getElementById('rating-widget-content');
+      const communityData = Auth.getShowRatings(SHOW_ID);
+      const communityHtml = communityData.count > 0
+        ? `<div class="community-score">
+            <span class="score-num">${communityData.average}</span>
+            <span class="score-label">Community avg &middot; ${communityData.count} rating${communityData.count !== 1 ? 's' : ''}</span>
+           </div>`
+        : '<div class="community-score"><span class="score-label">No community ratings yet. Be the first!</span></div>';
+
+      if (!user) {
+        widget.innerHTML = `
+          <p class="rating-msg" style="margin-bottom:0.75rem;">
+            <a href="../login.html" style="color:var(--accent);">Log in</a> or
+            <a href="../register.html" style="color:var(--accent);">join free</a> to rate this ${'show'}.
+          </p>
+          ${communityHtml}
+        `;
+        return;
+      }
+
+      const userScore = Auth.getUserRating(SHOW_ID);
+      const buttons = Array.from({length:10}, (_, i) => i+1).map(n =>
+        `<button class="${userScore === n ? 'selected' : ''}" data-score="${n}" onclick="submitRating(${n})">${n}</button>`
+      ).join('');
+
+      widget.innerHTML = `
+        <p class="rating-msg" style="margin-bottom:0.5rem;">${userScore ? `Your rating: <strong>${userScore}/10</strong>` : 'Pick your score:'}</p>
+        <div class="star-select">${buttons}</div>
+        ${communityHtml}
+      `;
+    }
+
+    function submitRating(score) {
+      Auth.rateShow(SHOW_ID, score);
+      renderRatingWidget();
+    }
+
+    renderRatingWidget();
+  </script>
 </body>
 </html>

@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us | Best Shows</title>
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="subpage">
-  <nav class="navbar">
+  <nav class="navbar" data-root="">
     <div class="nav-container">
-      <a href="../index.html" class="brand">Best Shows</a>
+      <a href="index.html" class="brand">Best Shows</a>
       <ul class="nav-menu">
-        <li><a href="../index.html#reviews">Reviews</a></li>
-        <li><a href="../index.html#top">Top Picks</a></li>
+        <li><a href="index.html#reviews">Reviews</a></li>
+        <li><a href="index.html#top">Top Picks</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
@@ -38,12 +38,16 @@
         <div class="contact-info">
           <h2>Ways to Reach Us</h2>
           <p>We read every message. Whether you have a suggestion, a correction, or just want to debate a rating, we'd love to hear from you.</p>
-          
+
           <div class="contact-methods">
             <div class="method">
               <h4>Email</h4>
               <a href="mailto:feedback@bestshows.com">feedback@bestshows.com</a>
               <p>Best for detailed feedback or longer messages.</p>
+            </div>
+            <div class="method">
+              <h4>Content Advisory Corrections</h4>
+              <p>If you believe we've missed or misclassified a content advisory on a review, please let us know. We take accuracy seriously.</p>
             </div>
             <div class="method">
               <h4>Response Time</h4>
@@ -53,6 +57,7 @@
         </div>
 
         <form class="contact-form" action="#" method="POST">
+          <div class="form-success">Thanks — we'll get back to you within 48 hours.</div>
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required placeholder="Your name">
@@ -66,8 +71,10 @@
             <select id="subject" name="subject" required>
               <option value="">Select a topic</option>
               <option value="feedback">General Feedback</option>
-              <option value="correction">Correction</option>
-              <option value="suggestion">Suggestion</option>
+              <option value="correction">Review Correction</option>
+              <option value="advisory">Content Advisory Issue</option>
+              <option value="suggestion">Show Suggestion</option>
+              <option value="membership">Membership Help</option>
               <option value="press">Press / Media</option>
               <option value="other">Other</option>
             </select>
@@ -90,10 +97,12 @@
           <p>Candid reviews. No payola.</p>
         </div>
         <div class="footer-links">
-          <a href="../index.html#reviews">Reviews</a>
-          <a href="../index.html#top">Top Picks</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="index.html#top">Top Picks</a>
           <a href="about.html">About</a>
           <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
         </div>
         <div class="footer-copy">
           <p>&copy; 2025 Best Shows. All rights reserved.</p>
@@ -102,6 +111,7 @@
     </div>
   </footer>
 
-  <script src="../script.js"></script>
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

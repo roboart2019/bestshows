@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Severance Review | Best Shows</title>
+  <title>Moonlight Review | Best Shows</title>
   <link rel="stylesheet" href="../style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,41 +28,41 @@
   <section class="review-single">
     <div class="container">
       <div class="review-header">
-        <span class="media-badge">TV</span>
-        <span class="official-rating tvma">TV-MA</span>
-        <div class="rating rating-high">9.5</div>
+        <span class="media-badge film">Film</span>
+        <span class="official-rating r">R</span>
+        <div class="rating rating-high">9.2</div>
       </div>
 
-      <h1>Severance</h1>
-      <p class="review-meta">2022–Present &middot; Apple TV+ &middot; 2 Seasons</p>
+      <h1>Moonlight</h1>
+      <p class="review-meta">2016 &middot; Various streaming</p>
 
       <div class="review-body">
-        <p>A masterclass in atmosphere and tension. The show explores work-life balance through a terrifying premise: employees undergo a "severance" procedure that splits their memories between work and personal life. The production design feels sterile and sinister in equal measure, with every hallway and elevator shaft oozing unease.</p>
-        <p>Adam Scott delivers a career-best performance, balancing quiet despair with moments of fragile humanity. The mystery unfolds with surgical precision, revealing just enough to keep you hooked but never over-explaining. The soundtrack is an instrument of dread.</p>
-        <p>Season 1 is a near-perfect thriller. Season 2 expands the world while deepening the philosophical questions about identity, autonomy, and what it means to truly "live." If you love slow-burn psychological horror with sharp social commentary, this is essential viewing.</p>
+        <p>Moonlight is a film of extraordinary intimacy. Barry Jenkins tells the story of Chiron across three chapters — as a child, a teenager, and a man — tracing the forces that shape and suppress identity.</p>
+        <p>Mahershala Ali's brief appearance as Juan, a drug dealer who becomes Chiron's unlikely mentor, won the Academy Award and deserved it. Naomie Harris is devastating as Chiron's mother, a woman being destroyed by addiction who destroys her son in turn. Trevante Rhodes as adult Chiron carries everything in silence and posture.</p>
+        <p>James Laxton's cinematography is luminous — the film looks like memory: too bright, too beautiful, slightly out of reach. Nicholas Britell's score of classical music and hip-hop production is extraordinary. Moonlight won Best Picture and earned every vote. A film that stays.</p>
       </div>
 
       <div class="review-footer">
         <div>
           <div class="advisories-label">Content Advisories</div>
           <div class="advisories">
+              <span class="advisory">Drug Use</span>
               <span class="advisory">Violence</span>
-              <span class="advisory">Mental Health Themes</span>
-              <span class="advisory">Suicide / Self-Harm</span>
               <span class="advisory">Strong Language</span>
+              <span class="advisory">Sexual Content</span>
+              <span class="advisory">Child Abuse</span>
+              <span class="advisory">Domestic Violence</span>
           </div>
         </div>
         <div style="margin-top:1.25rem;">
-          <span class="tag">Thriller</span>
-              <span class="tag">Mystery</span>
-              <span class="tag">Drama</span>
-              <span class="tag">Sci-Fi</span>
+          <span class="tag">Drama</span>
+              <span class="tag">Coming-of-Age</span>
         </div>
       </div>
 
       <!-- Member Rating Widget -->
       <div class="member-rating-box" id="rating-box">
-        <h4>Rate This Show</h4>
+        <h4>Rate This Film</h4>
         <div id="rating-widget-content"></div>
       </div>
 
@@ -96,7 +96,7 @@
   <script src="../auth.js"></script>
   <script src="../script.js"></script>
   <script>
-    const SHOW_ID = 'severance';
+    const SHOW_ID = 'moonlight';
 
     function renderRatingWidget() {
       const user = Auth.currentUser();
@@ -113,7 +113,7 @@
         widget.innerHTML = `
           <p class="rating-msg" style="margin-bottom:0.75rem;">
             <a href="../login.html" style="color:var(--accent);">Log in</a> or
-            <a href="../register.html" style="color:var(--accent);">join free</a> to rate this ${'show'}.
+            <a href="../register.html" style="color:var(--accent);">join free</a> to rate this ${'film'}.
           </p>
           ${communityHtml}
         `;
